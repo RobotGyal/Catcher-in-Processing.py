@@ -1,3 +1,5 @@
+moveX = 200
+
 def setup():
     size(780, 800)
     strokeWeight(2)
@@ -7,12 +9,22 @@ def setup():
     background(bg)
 
 
+def keyPressed():
+    global moveX
+    if (keyCode == LEFT):
+        moveX -= 10
+    elif (keyCode == RIGHT):
+        moveX += 10
+    else:
+        moveX = width/2
 
 
 def draw():
+    global moveX
     # background(125)
     robo = Robot()
-    robo.drawRobot(width/2, height, 50, 40)
+    robo.drawRobot(moveX, height, 50, 40)
+  
 
 
 class Robot(object):
