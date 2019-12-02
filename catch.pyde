@@ -1,26 +1,29 @@
 moveX = 200
 
 def setup():
+    global bg
     size(780, 800)
     strokeWeight(2)
     ellipseMode(RADIUS)
     bg = loadImage("space.jpg")
     bg.resize(width, height)
-    background(bg)
+
 
 
 def keyPressed():
     global moveX
     if (keyCode == LEFT):
-        moveX -= 10
+        moveX -= 5
     elif (keyCode == RIGHT):
-        moveX += 10
+        moveX += 5
     else:
         moveX = width/2
 
 
 def draw():
+    global bg
     global moveX
+    background(bg)
     # background(125)
     robo = Robot()
     robo.drawRobot(moveX, height, 50, 40)
