@@ -9,7 +9,6 @@ def setup():
     bg.resize(width, height)
 
 
-
 def keyPressed():
     global moveX
     if (keyCode == LEFT):
@@ -17,7 +16,7 @@ def keyPressed():
     elif (keyCode == RIGHT):
         moveX += 5
     else:
-        moveX = width/2
+        moveX = width / 2
 
 
 def draw():
@@ -27,7 +26,10 @@ def draw():
     # background(125)
     robo = Robot()
     robo.drawRobot(moveX, height, 50, 40)
-  
+    star = Star(100, 100)
+    stroke(0, 123, 236)
+    star.drawStar(50)
+    star.fall()
 
 
 class Robot(object):
@@ -67,3 +69,25 @@ class Robot(object):
         ellipse(x + 24, ny - 6, 14, 14)
         fill(0)
         ellipse(x + 24, ny - 6, 3, 3)
+
+
+class Star(object):
+
+    def __init__(self, xpos, ypos):
+        self.xpos = xpos
+        self.ypos = ypos
+
+    def drawStar(self, size):
+        self.size = size
+
+        beginShape()
+        vertex(self.xpos, self.ypos)
+        vertex(self.xpos + self.size, self.ypos)
+        vertex(self.xpos, self.ypos + self.size / 2)
+        vertex(self.xpos + self.size / 2, self.ypos - self.size / 2)
+        vertex(self.xpos + self.size, self.ypos + self.size / 2)
+        vertex(self.xpos, self.ypos)
+        endShape()
+
+    def fall(self):
+        self.ypos += 10
